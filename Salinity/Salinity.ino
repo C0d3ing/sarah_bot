@@ -14,5 +14,6 @@ void loop() {
   diffV = maxV-minV;
 
   //insert calibration curve
+  // or plot diffV
 
 }
