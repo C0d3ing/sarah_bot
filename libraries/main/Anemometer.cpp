@@ -28,7 +28,7 @@ void Anemometer::ISR()
 
 }
 
-String ButtonSampler::printState(void)
+String Anemometer::printState(void)
 // This function returns a string that the Printer class 
 // can print to the serial monitor if desired
 {
