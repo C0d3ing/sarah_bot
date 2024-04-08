@@ -20,3 +20,5 @@ class Anemometer : public DataSource
     int revolution 
 
 };
+
+#endif
