@@ -15,9 +15,12 @@ class Anemometer : public DataSource
 {
     Anemometer(void);
 
+    void init(void);
+
     public:
     void ISR();
-    int revolution 
+    int revolution;
+    double windSpeed;
 
 };
 
