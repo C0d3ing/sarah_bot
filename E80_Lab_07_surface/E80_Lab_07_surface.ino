@@ -27,6 +27,7 @@ Authors:
 #include <SurfaceControl.h>
 #define UartSerial Serial1
 #include <GPSLockLED.h>
+#include <Anemometer.h>
 
 /////////////////////////* Global Variables *////////////////////////
 

@@ -41,4 +41,13 @@
 // Depth Control
 #define PRESSURE_PIN 14 // Teensy pin A00
 
+//Anemometor (A3 on the board)
+#define ANEMOMETER_PIN 17
+
+//Salinity
+#define SALINITY_PIN  16
+
+//Thermistor pin
+#define THERMISTOR_PIN 18
+
 #endif
