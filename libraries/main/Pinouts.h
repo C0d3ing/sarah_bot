@@ -44,10 +44,10 @@
 //Anemometor (A3 on the board)
 #define ANEMOMETER_PIN 17
 
-//Salinity
-#define SALINITY_PIN  16
+//Salinity (T.B.D on board)
+#define SALINITY_PIN  15
 
-//Thermistor pin
+//Thermistor pin (T.B.D on board)
 #define THERMISTOR_PIN 18
 
 #endif
