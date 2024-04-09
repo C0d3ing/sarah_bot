@@ -28,6 +28,8 @@ Authors:
 #define UartSerial Serial1
 #include <GPSLockLED.h>
 #include <Anemometer.h>
+#include <Salinity.h>
+#include <Thermistor.h>
 
 /////////////////////////* Global Variables *////////////////////////
 
@@ -45,6 +47,8 @@ Printer printer;
 GPSLockLED led;
 
 Anemometer anemometer;
+Salinity salinity;
+//Thermistor thermistor;
 
 // loop start recorder
 int loopStartTime;
@@ -64,6 +68,8 @@ void setup() {
   logger.include(&ef);
   //logger.include(&button_sampler);
   logger.include(&anemometer);
+  logger.include(&salinity);
+  //logger.include(&thermistor)
   logger.init();
 
   printer.init();
@@ -75,7 +81,9 @@ void setup() {
   motor_driver.init();
   led.init();
 
+  // Our Sensors
   anemometer.init();
+
 
   int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
 
