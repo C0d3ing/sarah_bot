@@ -21,8 +21,10 @@ void Anemometer::init(void)
 {
   pinMode(ANEMOMETER_PIN,INPUT_PULLUP); 
   // When the anemometer makes one revolution
-  // the signal will spike to HIGH
-  oldTime = 0;
+  // the signal will spike to HIGH then run the ISR function
+
+  //Initialize the starting value for time as the initial system time
+  oldTime = BurstADCSampler.TIME_INDEX;
 }
 
 void Anemometer::ISR()

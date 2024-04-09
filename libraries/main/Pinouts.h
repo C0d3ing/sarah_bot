@@ -45,7 +45,9 @@
 #define ANEMOMETER_PIN 17
 
 //Salinity (T.B.D on board)
-#define SALINITY_PIN  15
+#define SALINITY_MIN_PIN 15
+#define SALINITY_MAX_PIN 
+
 
 //Thermistor pin (T.B.D on board)
 #define THERMISTOR_PIN 18
