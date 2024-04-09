@@ -28,8 +28,8 @@ Authors:
 #define UartSerial Serial1
 #include <GPSLockLED.h>
 #include <Anemometer.h>
-#include <Salinity.h>
-#include <Thermistor.h>
+//#include <Salinity.h>
+//#include <Thermistor.h>
 
 /////////////////////////* Global Variables *////////////////////////
 
@@ -47,7 +47,7 @@ Printer printer;
 GPSLockLED led;
 
 Anemometer anemometer;
-Salinity salinity;
+//Salinity salinity;
 //Thermistor thermistor;
 
 // loop start recorder
@@ -68,7 +68,7 @@ void setup() {
   logger.include(&ef);
   //logger.include(&button_sampler);
   logger.include(&anemometer);
-  logger.include(&salinity);
+  //logger.include(&salinity);
   //logger.include(&thermistor)
   logger.init();
 
@@ -102,6 +102,7 @@ void setup() {
   button_sampler.lastExecutionTime     = loopStartTime - LOOP_PERIOD + BUTTON_LOOP_OFFSET;
   xy_state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
   surface_control.lastExecutionTime    = loopStartTime - LOOP_PERIOD + SURFACE_CONTROL_LOOP_OFFSET;
+  anemometer.lastExecutionTime         = loopStartTime - LOOP_PERIOD + ANEMOMETER_OFFSET;
   logger.lastExecutionTime             = loopStartTime - LOOP_PERIOD + LOGGER_LOOP_OFFSET;
 
 }
@@ -125,7 +126,7 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
-    printer.printValue(10, anemometer.period());
+    printer.printValue(10, anemometer.printPeriod());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 

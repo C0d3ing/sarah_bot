@@ -27,21 +27,27 @@ void Anemometer::init(void)
   oldTime = BurstADCSampler.TIME_INDEX;
 }
 
-void Anemometer::ISR()
+void Anemometer::ISR(void)
 {
   //Make TIME_INDEX public in the BurstADCSampler file
   currentTime = BurstADCSampler.TIME_INDEX;
 
   //Convert from indecies to time (Conversion from ASCSampler Library)
-  period = (currentTime-oldTime)* 0.1/1000;
-  oldTime = CurrentTime
+  period = (currentTime - oldTime) * 0.1/1000.0;
+  oldTime = currentTime;
 }
 
-String Anemometer::printState(void)
+String Anemometer::printPeriod(void)
 // This function returns a string that the Printer class 
 // can print to the serial monitor if desired
 {
   return "Anem: " + String(period);
 }
 
-//TODO: Make logger function, Finish ISR, Add calibration curve ... (more to come)
+size_t Anemometer::writeDataBytes(unsigned char * buffer, size_t idx)
+// This function writes data to the micro SD card
+{
+  bool * data_slot = (bool *) &buffer[idx];
+  data_slot[0] = buttonState;
+  return idx + sizeof(bool);
+}

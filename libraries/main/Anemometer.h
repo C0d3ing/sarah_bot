@@ -6,24 +6,31 @@
 #ifndef Anemometer_h
 #define Anemometer_h
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "DataSource.h"
 #include "Pinouts.h"
 
 class Anemometer : public DataSource
 {
-    Anemometer(void);
+public:
+  Anemometer(void);
 
-    void init(void);
+  void init(void);
 
-    public:
-    void ISR();
-    int revolution;
-    double period;
 
-    private:
-    int CurrentTime;
-    int oldTime;
+  void ISR(void);
+  String printPeriod(void);
+  int revolution;
+  double period;
+
+  // Write out
+  size_t writeDataBytes(unsigned char * buffer, size_t idx);
+
+  int lastExecutionTime = -1;
+
+private:
+  int currentTime;
+  int oldTime;
 
 };
 
