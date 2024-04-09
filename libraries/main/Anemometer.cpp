@@ -9,6 +9,7 @@
 //The following file defines Interrupt Service Routine (ISR)-- what happens when interrupt is triggered
 //and provide list of possible interrupt routines.
 #include <avr/interrupt.h>
+#include <BurstADCSampler.h>
 
 extern Printer printer;
 
@@ -26,8 +27,11 @@ void Anemometer::init(void)
 
 void Anemometer::ISR()
 {
-  //currentTime = grab current time some how
-  period = currentTime-oldTime;
+  //Make TIME_INDEX public in the BurstADCSampler file
+  currentTime = BurstADCSampler.TIME_INDEX;
+
+  //Convert from indecies to time (Conversion from ASCSampler Library)
+  period = (currentTime-oldTime)* 0.1/1000;
   oldTime = CurrentTime
 }
 

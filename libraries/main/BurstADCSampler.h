@@ -28,6 +28,9 @@ public:
 
 	int lastExecutionTime = -1;
 
+	//Made Public for anemometer
+	const int TIME_INDEX = 0;
+
 private:
 	node* headarray[NUM_PINS] = {NULL};
 
@@ -40,7 +43,7 @@ private:
 
 	String basename = "datalog";
 	String filename = "";
-	const int TIME_INDEX = 0;
+	
 	const int pinMap[NUM_PINS] =  {21,14,15,16,17,24,25,26,27};
 
 
