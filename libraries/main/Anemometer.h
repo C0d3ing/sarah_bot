@@ -1,6 +1,6 @@
 
 /*
-  Anemometer.h - Library for processing the hall effect sensor into wind speed.
+  Anemometer.h - Library for processing the hall effect sensor data into period (then use matLab to convert to windspeed).
   Created by Team SHARA - April 2024
 */
 
@@ -20,7 +20,11 @@ class Anemometer : public DataSource
     public:
     void ISR();
     int revolution;
-    double windSpeed;
+    double period;
+
+    private:
+    double CurrentTime;
+    double oldTime;
 
 };
 

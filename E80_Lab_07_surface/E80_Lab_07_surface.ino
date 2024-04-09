@@ -44,6 +44,8 @@ Logger logger;
 Printer printer;
 GPSLockLED led;
 
+Anemometer anemometer;
+
 // loop start recorder
 int loopStartTime;
 int currentTime;
@@ -60,7 +62,8 @@ void setup() {
   logger.include(&motor_driver);
   logger.include(&adc);
   logger.include(&ef);
-  logger.include(&button_sampler);
+  //logger.include(&button_sampler);
+  logger.include(&anemometer);
   logger.init();
 
   printer.init();
@@ -71,6 +74,8 @@ void setup() {
   gps.init(&GPS);
   motor_driver.init();
   led.init();
+
+  anemometer.init();
 
   int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
 
@@ -112,6 +117,7 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
+    printer.printValue(10, anemometer.period());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
