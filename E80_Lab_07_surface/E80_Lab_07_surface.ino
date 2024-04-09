@@ -46,7 +46,7 @@ SensorIMU imu;
 Logger logger;
 Printer printer;
 GPSLockLED led;
-Burst
+BurstADCSampler badc;
 
 Anemometer anemometer;
 //Salinity salinity;
@@ -66,7 +66,7 @@ void setup() {
   logger.include(&xy_state_estimator);
   logger.include(&surface_control);
   logger.include(&motor_driver);
-  logger.include(&adc);
+  logger.include(&badc);
   logger.include(&ef);
   logger.include(&button_sampler);
   logger.include(&anemometer);
