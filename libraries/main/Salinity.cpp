@@ -15,7 +15,7 @@ Salinity::Salinity(void)
   : DataSource("Salinity","double") // from DataSource
 {}
 
-void ASalinity::init(void)
+void Salinity::init(void)
 {
   pinMode(SALINITY_MAX_PIN, INPUT); 
   pinMode(SALINITY_MIN_PIN, INPUT); 
@@ -32,7 +32,5 @@ String Salinity::printState(void)
 // This function returns a string that the Printer class 
 // can print to the serial monitor if desired
 {
-  return "Anem: " + String(diffVol);
+  return "Salin: " + String(diffVol);
 }
-
-//TODO: Make logger function, Finish ISR, Add calibration curve ... (more to come)

@@ -22,8 +22,8 @@ class Anemometer : public DataSource
     double period;
 
     private:
-    double CurrentTime;
-    double oldTime;
+    int CurrentTime;
+    int oldTime;
 
 };
 

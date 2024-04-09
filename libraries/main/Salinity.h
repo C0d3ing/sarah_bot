@@ -20,8 +20,8 @@ class Salinity : public DataSource
     int diffVol;
 
     private:
-    double MaxVol;
-    double MinVol;
+    double maxVol;
+    double minVol;
 
 };
 
