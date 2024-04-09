@@ -35,21 +35,21 @@
 #define ERROR_FLAG_C 9
 
 // TOF
-#define SPEAKER_PIN 20
-#define MIC_PIN 23
+//#define SPEAKER_PIN 20
+//#define MIC_PIN 23
 
 // Depth Control
-#define PRESSURE_PIN 14 // Teensy pin A00
+//#define PRESSURE_PIN 14 // Teensy pin A00
 
 //Anemometor (A3 on the board)
 #define ANEMOMETER_PIN 17
 
 //Salinity (T.B.D on board)
 #define SALINITY_MIN_PIN 15
-#define SALINITY_MAX_PIN 
+#define SALINITY_MAX_PIN 16
 
 
 //Thermistor pin (T.B.D on board)
-#define THERMISTOR_PIN 18
+#define THERMISTOR_PIN 14
 
 #endif

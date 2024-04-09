@@ -28,6 +28,7 @@ Authors:
 #define UartSerial Serial1
 #include <GPSLockLED.h>
 #include <Anemometer.h>
+#include <BurstADCSampler.h>
 //#include <Salinity.h>
 //#include <Thermistor.h>
 
@@ -45,6 +46,7 @@ SensorIMU imu;
 Logger logger;
 Printer printer;
 GPSLockLED led;
+Burst
 
 Anemometer anemometer;
 //Salinity salinity;
@@ -66,7 +68,7 @@ void setup() {
   logger.include(&motor_driver);
   logger.include(&adc);
   logger.include(&ef);
-  //logger.include(&button_sampler);
+  logger.include(&button_sampler);
   logger.include(&anemometer);
   //logger.include(&salinity);
   //logger.include(&thermistor)

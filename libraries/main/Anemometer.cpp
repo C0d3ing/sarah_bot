@@ -24,13 +24,13 @@ void Anemometer::init(void)
   // the signal will spike to HIGH then run the ISR function
 
   //Initialize the starting value for time as the initial system time
-  oldTime = BurstADCSampler.TIME_INDEX;
+  oldTime = Badc.TIME_INDEX;
 }
 
 void Anemometer::ISR(void)
 {
   //Make TIME_INDEX public in the BurstADCSampler file
-  currentTime = BurstADCSampler.TIME_INDEX;
+  currentTime = Badc.TIME_INDEX;
 
   //Convert from indecies to time (Conversion from ASCSampler Library)
   period = (currentTime - oldTime) * 0.1/1000.0;
