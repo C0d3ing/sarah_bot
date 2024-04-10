@@ -27,10 +27,6 @@ Authors:
 #include <SurfaceControl.h>
 #define UartSerial Serial1
 #include <GPSLockLED.h>
-#include <Anemometer.h>
-#include <BurstADCSampler.h>
-//#include <Salinity.h>
-//#include <Thermistor.h>
 
 /////////////////////////* Global Variables *////////////////////////
 
@@ -46,11 +42,6 @@ SensorIMU imu;
 Logger logger;
 Printer printer;
 GPSLockLED led;
-//BurstADCSampler badc;
-
-Anemometer anemometer;
-//Salinity salinity;
-//Thermistor thermistor;
 
 // loop start recorder
 int loopStartTime;
@@ -66,11 +57,9 @@ void setup() {
   logger.include(&xy_state_estimator);
   logger.include(&surface_control);
   logger.include(&motor_driver);
+  logger.include(&adc);
   logger.include(&ef);
   logger.include(&button_sampler);
-  logger.include(&anemometer);
-  //logger.include(&salinity);
-  //logger.include(&thermistor)
   logger.init();
 
   printer.init();
@@ -81,10 +70,6 @@ void setup() {
   gps.init(&GPS);
   motor_driver.init();
   led.init();
-
-  // Our Sensors
-  anemometer.init();
-
 
   int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
 
@@ -103,7 +88,6 @@ void setup() {
   button_sampler.lastExecutionTime     = loopStartTime - LOOP_PERIOD + BUTTON_LOOP_OFFSET;
   xy_state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
   surface_control.lastExecutionTime    = loopStartTime - LOOP_PERIOD + SURFACE_CONTROL_LOOP_OFFSET;
-  anemometer.lastExecutionTime         = loopStartTime - LOOP_PERIOD + ANEMOMETER_OFFSET;
   logger.lastExecutionTime             = loopStartTime - LOOP_PERIOD + LOGGER_LOOP_OFFSET;
 
 }
@@ -127,7 +111,6 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
-    printer.printValue(10, anemometer.printPeriod());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
