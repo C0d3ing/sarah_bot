@@ -169,6 +169,18 @@ void loop() {
     EF_States[2] = 1;
   }
 
+  if ( surface_control.atpoint && !isSampled()) {
+    //stop motors
+    drive(0, 0, 0);
+
+    //Data
+    burst_adc.updateSample();
+
+    //Wait while data is collected
+    delay(2000);
+
+  }
+
 
   // uses the ButtonSampler library to read a button -- use this as a template for new libraries!
   if ( currentTime-button_sampler.lastExecutionTime > LOOP_PERIOD ) {
