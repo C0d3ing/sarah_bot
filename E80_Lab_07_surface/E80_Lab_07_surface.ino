@@ -27,7 +27,7 @@ Authors:
 #include <SurfaceControl.h>
 #define UartSerial Serial1
 #include <GPSLockLED.h>
-#include <Anemometer.h>
+//#include <Anemometer.h>
 #include <BurstADCSampler.h>
 //#include <Salinity.h>
 //#include <Thermistor.h>

@@ -1,5 +1,11 @@
-int salinityMin = 17;
+#include<Arduino.h>
+
+int salinityMin = 15;
 int salinityMax = 16; 
+
+int minV;
+int maxV;
+int diffV;
 
 void setup() {
   
@@ -12,6 +18,8 @@ void loop() {
   maxV = analogRead(salinityMin);
 
   diffV = maxV-minV;
+
+  Serial.print(diffV)
 
   //insert calibration curve
   // or plot diffV
