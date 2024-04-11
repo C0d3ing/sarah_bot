@@ -1,11 +1,11 @@
 #ifndef __BURSTADCSAMPLER_h__
 #define __BURSTADCSAMPLER_h__
 
-#include <Arduino.h>
-#include "Pinouts.h"
-#include <SPI.h>
-#include <SD.h>
-#include <stdio.h>
+//#include <Arduino.h>
+//#include "Pinouts.h"
+//#include <SPI.h>
+//#include <SD.h>
+//#include <stdio.h>
 
 #define NUM_PINS 9
 
@@ -27,9 +27,7 @@ public:
 	void init(void);
 
 	int lastExecutionTime = -1;
-
-	//Made Public for anemometer
-	const int TIME_INDEX = 0;
+	
 
 private:
 	node* headarray[NUM_PINS] = {NULL};
@@ -40,6 +38,7 @@ private:
 	void save(void);
 	void cleanup(void);
 	void namefile(void);
+	const int TIME_INDEX = 0;
 
 	String basename = "datalog";
 	String filename = "";

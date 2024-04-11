@@ -3,7 +3,8 @@
 // the Half-bridge driver for the old ones, switch IN1 & IN2 for PWM and LOW to change
 // direction. The code below, along with the .h file and the Pinouts.h file were changed.
 // Erik Spjut August 2021.
-#include "MotorDriver.h"
+//#include "MotorDriver.h"
+
 #include "Printer.h"
 extern Printer printer;
 

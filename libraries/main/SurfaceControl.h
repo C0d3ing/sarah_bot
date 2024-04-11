@@ -48,6 +48,9 @@ public:
   int totalWayPoints;
   double * wayPoints;
 
+  bool isSampled() const{ return isSampledPoint;}
+  void setSampled (bool sampled) {isSampledPoint = sampled;} 
+
 private:
 
   // updates the current waypoint if necessary
@@ -63,6 +66,8 @@ private:
   int delayStartTime = 0;
   int currentTime;
   bool delayed;
+
+  bool isSampledPoint;
 };
 
 #endif

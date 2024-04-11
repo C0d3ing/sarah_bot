@@ -46,9 +46,9 @@ SensorIMU imu;
 Logger logger;
 Printer printer;
 GPSLockLED led;
-//BurstADCSampler badc;
+BurstADCSampler burst_adc;
 
-Anemometer anemometer;
+//Anemometer anemometer;
 //Salinity salinity;
 //Thermistor thermistor;
 
@@ -68,7 +68,7 @@ void setup() {
   logger.include(&motor_driver);
   logger.include(&ef);
   logger.include(&button_sampler);
-  logger.include(&anemometer);
+  //logger.include(&anemometer);
   //logger.include(&salinity);
   //logger.include(&thermistor)
   logger.init();
@@ -83,10 +83,10 @@ void setup() {
   led.init();
 
   // Our Sensors
-  anemometer.init();
+  //anemometer.init();
 
 
-  int navigateDelay = 0; // how long robot will stay at surface waypoint before continuing (ms)
+  int navigateDelay = 4000; // how long robot will stay at surface waypoint before continuing (ms)
 
   const int num_surface_waypoints = 3; // Set to 0 if only doing depth control
   double surface_waypoints [] = { 125, -40, 150, -40, 125, -40 };   // listed as x0,y0,x1,y1, ... etc.
@@ -103,7 +103,8 @@ void setup() {
   button_sampler.lastExecutionTime     = loopStartTime - LOOP_PERIOD + BUTTON_LOOP_OFFSET;
   xy_state_estimator.lastExecutionTime = loopStartTime - LOOP_PERIOD + XY_STATE_ESTIMATOR_LOOP_OFFSET;
   surface_control.lastExecutionTime    = loopStartTime - LOOP_PERIOD + SURFACE_CONTROL_LOOP_OFFSET;
-  anemometer.lastExecutionTime         = loopStartTime - LOOP_PERIOD + ANEMOMETER_OFFSET;
+  //anemometer.lastExecutionTime       = loopStartTime - LOOP_PERIOD + ANEMOMETER_OFFSET;
+  burst_adc.lastExecutionTime          = loopStartTime;
   logger.lastExecutionTime             = loopStartTime - LOOP_PERIOD + LOGGER_LOOP_OFFSET;
 
 }
@@ -127,7 +128,7 @@ void loop() {
     printer.printValue(7,motor_driver.printState());
     printer.printValue(8,imu.printRollPitchHeading());        
     printer.printValue(9,imu.printAccels());
-    printer.printValue(10, anemometer.printPeriod());
+    //printer.printValue(10, anemometer.printPeriod());
     printer.printToSerial();  // To stop printing, just comment this line out
   }
 
@@ -167,6 +168,7 @@ void loop() {
     EF_States[1] = 1;
     EF_States[2] = 1;
   }
+
 
   // uses the ButtonSampler library to read a button -- use this as a template for new libraries!
   if ( currentTime-button_sampler.lastExecutionTime > LOOP_PERIOD ) {

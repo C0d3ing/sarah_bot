@@ -31,7 +31,6 @@ public:
 private:
   int currentTime;
   int oldTime;
-  BurstADCSampler badc; 
 
 };
 
