@@ -5,7 +5,8 @@
 //#include "Pinouts.h"
 //#include <SPI.h>
 //#include <SD.h>
-//#include <stdio.h>
+//
+#include <stdio.h>
 
 #define NUM_PINS 9
 

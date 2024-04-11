@@ -169,12 +169,13 @@ void loop() {
     EF_States[2] = 1;
   }
 
-  if ( surface_control.atpoint && !isSampled()) {
+  if ( surface_control.atPoint && !surface_control.isSampled()) {
     //stop motors
-    drive(0, 0, 0);
+    motor_driver.drive(0, 0, 0);
 
     //Data
-    burst_adc.updateSample();
+    burst_adc.sample();
+    surface_control.setSampled(true);
 
     //Wait while data is collected
     delay(2000);
