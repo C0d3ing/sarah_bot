@@ -171,7 +171,7 @@ void loop() {
   }
 
   //if ( surface_control.atPoint && !surface_control.isSampled()) {
-  if (currentTime-burst_adc.lastExecutionTime > (3*60*1000)){
+  if (currentTime-burst_adc.lastExecutionTime > (2*60*1000)){
     //stop motors
     motor_driver.drive(0, 0, 0);
 
