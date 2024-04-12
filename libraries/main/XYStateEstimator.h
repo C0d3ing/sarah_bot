@@ -41,8 +41,11 @@ public:
 
 private:
   // set coordinates of chosen origin below
-  const float origin_lat = 34.106465;
-  const float origin_lon = -117.712488;
+  const float origin_lat = 34.1095085;
+  const float origin_lon = -117.7128220; 
+
+//fake lake
+//34.1095085[deg], Lon: -117.7128220[deg]
 
   bool gpsAcquired;
 
