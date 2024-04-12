@@ -41,6 +41,10 @@ public:
   float uR;              // right motor effort
   float uL;              // left motor effort
 
+  //Steer motor
+  float Ks = 1.0;
+  float uS;
+
   bool navigateState = 1;
   bool atPoint;
   bool complete = 0;

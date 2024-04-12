@@ -146,7 +146,7 @@ void loop() {
       else {
         surface_control.atPoint = false;   // get ready to go to the next point
       }
-      motor_driver.drive(surface_control.uL,surface_control.uR,0);
+      motor_driver.drive(surface_control.uL,surface_control.uR,surface_control.uS);
     }
   }
   
@@ -169,6 +169,9 @@ void loop() {
     EF_States[1] = 1;
     EF_States[2] = 1;
   }
+
+  //Swap between waypoint sampling and timed Sampling here
+  //Note: the timed continously samples after the timer counts down so stop it ASAP
 
   //if ( surface_control.atPoint && !surface_control.isSampled()) {
   if (currentTime-burst_adc.lastExecutionTime > (2*60*1000)){

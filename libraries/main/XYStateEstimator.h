@@ -44,7 +44,7 @@ private:
   const float origin_lat = 34.1095085;
   const float origin_lon = -117.7128220; 
 
-//fake lake
+//Phake lake
 //34.1095085[deg], Lon: -117.7128220[deg]
 
   bool gpsAcquired;
