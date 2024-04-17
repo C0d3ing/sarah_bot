@@ -48,8 +48,15 @@ public:
   int totalWayPoints;
   double * wayPoints;
 
-  bool isSampled() const{ return isSampledPoint;}
-  void setSampled (bool sampled) {isSampledPoint = sampled;} 
+  //Checks if a waypoint has been sampled
+  bool isSampled() const{ 
+    return isSampledPoint;
+    }
+
+  //sets a waypoint to sampled
+  void setSampled (bool sampled) {
+    isSampledPoint = sampled;
+    } 
 
 private:
 
