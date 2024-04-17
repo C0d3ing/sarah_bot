@@ -1,11 +1,12 @@
 #ifndef __BURSTADCSAMPLER_h__
 #define __BURSTADCSAMPLER_h__
 
-//#include <Arduino.h>
-//#include "Pinouts.h"
-//#include <SPI.h>
-//#include <SD.h>
-//#include <stdio.h>
+#include <Arduino.h>
+#include "Pinouts.h"
+#include <SPI.h>
+#include <SD.h>
+
+#include <stdio.h>
 
 #define NUM_PINS 9
 
@@ -40,7 +41,7 @@ private:
 	void namefile(void);
 	const int TIME_INDEX = 0;
 
-	String basename = "datalog";
+	String basename = "hello";
 	String filename = "";
 	
 	const int pinMap[NUM_PINS] =  {21,14,15,16,17,24,25,26,27};

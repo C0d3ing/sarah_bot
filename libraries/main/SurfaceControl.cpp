@@ -77,6 +77,8 @@ void SurfaceControl::navigate(xy_state_t * state, gps_state_t * gps_state_p, int
 
       uR = max(0, uR);
       uL = max(0, uL);
+
+      uS = Ks*(uR -uL);
     
   }
   else {
@@ -107,6 +109,8 @@ String SurfaceControl::printString(void) {
     printString += String(uL);
     printString += ", u_R: ";
     printString += String(uR);
+    printString += ", u_S: ";
+    printString += String(uS);
   } 
   return printString;
 }
