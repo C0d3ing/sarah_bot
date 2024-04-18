@@ -16,8 +16,9 @@ void setup() {
 
 void loop() {
   if (millis() == 30000) {
-    Serial.print("Revolutions at 30s" + revolution) 
+    Serial.print("Revolutions at 30s" + revolution);
   } 
+  
 }
 
 //ISR function: increments revolution count and prints to serial monitor
