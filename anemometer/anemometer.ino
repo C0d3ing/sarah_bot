@@ -11,12 +11,13 @@ void setup() {
   Serial.begin(9600);
   pinMode(hallSensor, INPUT_PULLUP);
   //when hallSensor pin goes from HIGH to LOW (falls), call the ISR function
-  attachInterrupt(digitalPinToInterrupt(hallSensor), ISR, FALLING);
+  attachInterrupt(digitalPinToInterrupt(hallSensor), ISR, RISING);
 }
 
 void loop() {
   if (millis() == 30000) {
     Serial.print("Revolutions at 30s" + revolution);
+    exit(0);
   } 
   
 }
