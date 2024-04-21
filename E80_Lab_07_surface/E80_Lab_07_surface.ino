@@ -63,6 +63,7 @@ void setup() {
   
   logger.include(&imu);
   logger.include(&gps);
+  logger.include(&adc);
   logger.include(&xy_state_estimator);
   logger.include(&surface_control);
   logger.include(&motor_driver);
@@ -89,8 +90,8 @@ void setup() {
 
   int navigateDelay = 4000; // how long robot will stay at surface waypoint before continuing (ms)
 
-  const int num_surface_waypoints = 2; // Set to 0 if only doing depth control
-  double surface_waypoints [] = { 0, 0};   // listed as x0,y0,x1,y1, ... etc.
+  const int num_surface_waypoints = 8; // Set to 0 if only doing depth control
+  double surface_waypoints [] = {0, -1, 1, 0, 0, 1, -1, 0};   // listed as x0,y0,x1,y1, ... etc.
   surface_control.init(num_surface_waypoints, surface_waypoints, navigateDelay);
   
   xy_state_estimator.init(); 
@@ -146,7 +147,7 @@ void loop() {
       else {
         surface_control.atPoint = false;   // get ready to go to the next point
       }
-      motor_driver.drive(surface_control.uL,surface_control.uR,surface_control.uS);
+      motor_driver.drive(surface_control.uL,surface_control.uR,0); //surface_control.uS
     }
   }
   
@@ -174,13 +175,17 @@ void loop() {
   //Note: the timed continously samples after the timer counts down so stop it ASAP
 
   //if ( surface_control.atPoint && !surface_control.isSampled()) {
-  if (currentTime-burst_adc.lastExecutionTime > (2*60*1000)){
+  if (currentTime-burst_adc.lastExecutionTime > 5000){
     //stop motors
     motor_driver.drive(0, 0, 0);
 
     //Data
     burst_adc.sample();
     surface_control.setSampled(true);
+
+    delay(500);
+
+    burst_adc.lastExecutionTime = currentTime;
 
     //Wait while data is collected
 
