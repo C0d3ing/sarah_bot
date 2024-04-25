@@ -1,0 +1,47 @@
+% read in csv file
+ds = tabularTextDatastore('hello29.csv','TreatAsMissing','NA','MissingValue',0);
+data = read(ds);
+datamatrix = table2array(data);
+
+% define sensor variables
+thermistor = 2;
+salinitymin = 3;
+salinitymax = 4;
+anemometer = 5;
+
+% define all needed rows
+% read every [number] rows into single file of [number] rows
+start = thermistor; % REPLACE! start is the row that the sensor of choice starts on!
+tunits = [];
+sensor = []; %RENAME to sensor of choice
+verticalsize = size(datamatrix);
+length = verticalsize(1);
+
+% assemble time rows
+for i = 1:9:length
+    tunits = horzcat(tunits, datamatrix(i,:));
+end
+
+% assemble sensor rows
+for i = start:9:length
+    sensor = horzcat(sensor, datamatrix(i,:));
+end
+
+% convert from teensy units to time
+% time = tunits * 
+
+% convert from teensy units to sensor voltage
+sensor = sensor *3.3*1024;
+
+% thermistor calibration
+temperatures = (sensor)*13.569 - 18.182;
+
+% salinity calibration
+salinity = ((sensor*1000)-104)/20.9;
+
+% anemometer calibration
+% windspeed = ;
+
+% analyze data from new lists
+plot(time, sensor);
+

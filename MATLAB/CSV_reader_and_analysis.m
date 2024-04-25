@@ -12,30 +12,50 @@ anemometer = 5;
 % define all needed rows
 % read every [number] rows into single file of [number] rows
 start = thermistor; % REPLACE! start is the row that the sensor of choice starts on!
-time = [];
-sensor = []; %RENAME to sensor of choice
+tunits = [];
+therm = [];
+salmax = [];
+salmin = [];
+anem = [];
 verticalsize = size(datamatrix);
 length = verticalsize(1);
 
 % assemble time rows
 for i = 1:9:length
-    time = horzcat(time, datamatrix(i,:));
+    tunits = horzcat(tunits, datamatrix(i,:));
 end
 
-% assemble sensor rows
-for i = start:9:length
-    sensor = horzcat(sensor, datamatrix(i,:));
+% assemble therm rows
+for i = thermistor:9:length
+    therm = horzcat(therm, datamatrix(i,:));
 end
+
+% assemble salmax rows
+for i = salinitymax:9:length
+    salmax = horzcat(salmax, datamatrix(i,:));
+end
+
+% assemble salmin rows
+for i = salinitymin:9:length
+    salmin = horzcat(salmin, datamatrix(i,:));
+end
+
+% assemble anem rows
+for i = anemometer:9:length
+    anem = horzcat(anem, datamatrix(i,:));
+end
+
+% convert from teensy units to time
+time = (tunits-12777542)/10000;
 
 % thermistor calibration
-temperatures = ;
+temperatures = (therm*3.3/1024)*13.569 - 18.182;
 
 % salinity calibration
-salinity = ;
+salinity = (((salmax-salmin)*3.3/1024*1000)-104)/20.9;
 
 % anemometer calibration
-windspeed = ;
+% windspeed = ;
 
-% analyze data from new lists
-plot(time, sensor);
-
+% plot data
+plot(time, temperatures);
