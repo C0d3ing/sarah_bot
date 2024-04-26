@@ -18,30 +18,30 @@ salmax = [];
 salmin = [];
 anem = [];
 verticalsize = size(datamatrix);
-length = verticalsize(1);
+Mlength = verticalsize(1);
 
 % assemble time rows
-for i = 1:9:length
+for i = 1:9:Mlength
     tunits = horzcat(tunits, datamatrix(i,:));
 end
 
 % assemble therm rows
-for i = thermistor:9:length
+for i = thermistor:9:Mlength
     therm = horzcat(therm, datamatrix(i,:));
 end
 
 % assemble salmax rows
-for i = salinitymax:9:length
+for i = salinitymax:9:Mlength
     salmax = horzcat(salmax, datamatrix(i,:));
 end
 
 % assemble salmin rows
-for i = salinitymin:9:length
+for i = salinitymin:9:Mlength
     salmin = horzcat(salmin, datamatrix(i,:));
 end
 
 % assemble anem rows
-for i = anemometer:9:length
+for i = anemometer:9:Mlength
     anem = horzcat(anem, datamatrix(i,:));
 end
 
@@ -56,22 +56,22 @@ salinity = (((salmax-salmin)*3.3/1024*1000)-104)/20.9;
 
 %% anemometer calibration
 
-% find the time rising edges occure
-% risEdgetime = [];
-% for i = 2:length(anem)
-%     if (anem(i-1) == 0 && anem(i)>0)
-%         risEdgetime = [risEdgetime time(i)];
-%     end
-% end
-% 
-% Find the periods between rising edges
-% anemPeriods = [];
-% for i = 1:(length(risEdgetime)-1)
-%     anemPeriods = [anemPeriods (risEdgetime(i+1) - risEdgetime(i))];
-% end
+%Find the time rising edges occure
+risEdgetime = [];
+for i = 1:length(anem)-1
+    if (anem(1,i) <= 0 && anem(1,i+1)>0)
+        risEdgetime = [risEdgetime time(i)];
+    end
+end
+
+%Find the periods between rising edges
+anemPeriods = [];
+for i = 1:(length(risEdgetime)-1)
+    anemPeriods = [anemPeriods (risEdgetime(i+1) - risEdgetime(i))];
+end
 
 %convert periods using calibration curve
-%windspeed = anemPeriods * -8.03 +8.74;
+windspeed = anemPeriods*0.0001 * -8.03 + 8.74;
 
 % plot data
-plot(time, anem);
+plot(risEdgetime(1, 1:length(risEdgetime)-1)*0.0001, windspeed);

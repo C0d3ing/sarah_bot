@@ -56,10 +56,10 @@ salinity = (((salmax-salmin)*3.3/1024*1000)-104)/20.9;
 
 %% anemometer calibration
 
-%find the time rising edges occure
+%Find the time rising edges occure
 risEdgetime = [];
 for i = 2:length(anem)
-    if (anem(i-1) == 0 && anem(i)>0)
+    if (anem(i-1) == 0 && anem(1,i)>0)
         risEdgetime = [risEdgetime time(i)];
     end
 end
@@ -71,7 +71,7 @@ for i = 1:(length(risEdgetime)-1)
 end
 
 %convert periods using calibration curve
-windspeed = anemPeriods * ;
+windspeed = anemPeriods * -8.03 +8.74;
 
 % plot data
-plot(time, anem);
+plot(risEdgetime, windspeed);
